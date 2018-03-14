@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
 
-
-
   def create
   	user = User.find_by(email: params[:session][:email])
   	# has_secure_passwordの機能

@@ -14,7 +14,7 @@ class TasksController < ApplicationController
    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = "タスクを作成しました"
-      redirect_to current_user, notice:"タスクを作成しました"
+      redirect_to current_user
     else
       flash[:danger] = "タスク内容を入力してください"
       redirect_to current_user
@@ -50,6 +50,5 @@ class TasksController < ApplicationController
           @task = current_user.tasks.find_by(id: params[:id])
           redirect_to current_user if @task.nil?
       end
-
 
 end

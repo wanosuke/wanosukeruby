@@ -12,13 +12,11 @@ RSpec.describe TasksController, type: :controller do
 	end	
 
 	describe 'DELETE #create' do
-		# sessionはcontroller specでテストする
 		it 'ログインユーザーに紐付かないタスクを削除しようとすると失敗し、タスク一覧にリダイレクトする' do
 			expect{ delete :destroy, params: { id: @test_task.id } }.to_not change(Task, :count)
 			expect(response).to redirect_to @user
 		end
 
-		# sessionはcontroller specでテストする
 		it 'ログインユーザーに紐付くタスクを削除しようとすると成功する' do
 			delete_task = @user.tasks.create!(content:"delete")
 			expect{ delete :destroy, params: { id: delete_task.id } }.to change(Task, :count).by(-1)
@@ -32,8 +30,7 @@ RSpec.describe TasksController, type: :controller do
 		end
 	end
 
-  	pending 'PATCH #update' do 
-  		# ? patchリクエスト送信時に、before_action: correct_user　内のユーザーに紐付いているタスク取得処理に失敗しエラーが起きる
+  	describe 'PATCH #update' do 
 		it 'ログインユーザーに紐付いてはいるが無効なデータを更新しようとすると失敗し、editにリダイレクトする' do
 			invalid_task = @user.tasks.create!(content:"delete")
 			invalid_task.content = ""
@@ -41,13 +38,11 @@ RSpec.describe TasksController, type: :controller do
 			expect(response).to render_template 'tasks/edit'
 		end
 
-  		# ? patchリクエスト送信時に、before_action: correct_user　内のユーザーに紐付いているタスク取得処理に失敗しエラーが起きる
 		it 'ログインユーザーに紐付いており有効なデータを更新できる' do
 			# ? michaelに紐づくタスクの2個目を生成しようとしているが、Validation failed: Email has already been taken　とでて失敗する
 			@valid_task = create(:bee)
 			content = "success"
 			patch :update, params: { id: valid_task.id , task: { content: content} }
-			# ? @valid_task生成時に失敗しているため、この処理もエラー
 			@valid_task.reload
 			expect(content == @reload_task.content).to eq true
 		end
