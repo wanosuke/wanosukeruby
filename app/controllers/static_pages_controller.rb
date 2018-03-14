@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
 
-　#　staticは使わないので後ほど全て削除する
+　# staticは使わないので後ほど全て削除する
   def home
   end
 
