@@ -1,8 +1,7 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>サインアップ</h1>
 
 <%= form_for(@user) do |f| %>
-<%= render 'shared/error_messages' %>
+<%= render :partial => "shared/error_messages",:locals => { :object => @user} %>
 
 	<%= f.label :name %>
 	<%= f.text_field :name,class:'form-control' %>
@@ -13,8 +12,8 @@
 	<%= f.label :password %>
 	<%= f.password_field :password,class:'form-control' %>
 
-	<%= f.label :password_confirmation, "Confirmation" %>
-	<%= f.password_field :password_confirmation,class:'form-control'  %>
+	<%= f.label :password, "Confirmation" %>
+	<%= f.password_field :password,class:'form-control'  %>
 
 	<%= f.submit "アカウント作成",class:"btn btn-primary" %>
 

@@ -4,6 +4,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
+  def setup
+      @user = users(:asako)
+  end
+  
   test "invalid information user" do 
   	get signup_path
   	assert_template 'users/new'
@@ -17,6 +21,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   	assert_template 'users/new'	
    end
 
+
  test "valid information user" do 
   	get signup_path
   	assert_template 'users/new'
@@ -29,6 +34,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   	end
   	follow_redirect!
   	assert_template 'users/show'
+    assert is_logged_in?
   end
 
 
