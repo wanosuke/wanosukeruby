@@ -23,13 +23,5 @@ RSpec.describe "Tasks", type: :request do
         	expect(response).to redirect_to login_url
        end
 	end
-
-
-
-
-
   end
-
-
-
 end
