@@ -3,15 +3,12 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 
 	describe 'Taskモデルのテスト' do
-
 		before do
-  			@user = build(:michael)
-  			@task = @user.tasks.build(content:"test")
-
+			@user = build(:michael)
+			@task = @user.tasks.build(content:"test")
 		end
 
 		describe 'モデルのvalidatesテスト' do
-
 			it 'user_idがなければエラー' do
 				@task.user_id = nil
 				expect(@task.valid?).to eq false
@@ -19,7 +16,7 @@ RSpec.describe Task, type: :model do
 
 			it 'contentがなければエラー' do
 				@task.content = nil
-  				expect(@task.valid?).to eq false
+				expect(@task.valid?).to eq false
 			end
 
 			it '作成日時の降順での表示テスト' do

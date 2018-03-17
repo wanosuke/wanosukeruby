@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.feature "TaskInterface", type: :feature do
 
 	feature "ログインからタスク登録、ログアウトまで" do
-
 		scenario 'ログインしタスク登録&削除＆編集＆詳細確認後、他のユーザーのタスク一覧は見えないことを確認し、ログアウトできること' do
 			#capybara側で参照しているtestDBに対しユーザーを作成する
 			user = create(:michaelsan)
@@ -12,9 +11,9 @@ RSpec.feature "TaskInterface", type: :feature do
 			#有効なユーザでログインする
 			visit login_path
 			fill_in 'Email', with: user.email
-   			fill_in 'Password', with: user.password
-   			click_button 'ログイン'
-   			#タスクの中身が空だと登録失敗する
+			fill_in 'Password', with: user.password
+			click_button 'ログイン'
+			#タスクの中身が空だと登録失敗する
 			fill_in 'Content', with:''
 			expect{ click_button '登録する' }.not_to change(Task, :count)
 			#有効なタスクを登録し、作成日の降順となることを確認する

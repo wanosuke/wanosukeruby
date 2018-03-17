@@ -6,15 +6,15 @@ module RequestHelper
 			word = "Tatsuro Yamashita"
 		end
 
-  		# テストユーザーとしてログインする
-  		def log_in_as(user)
-  			session[:user_id] = user.id
-  		end
+		# テストユーザーとしてログインする
+		def log_in_as(user)
+			session[:user_id] = user.id
+		end
 	end
 end
 
 
 RSpec.configure do |config|
-  config.include RequestHelper::Sessions, type: :controller
-  config.include RequestHelper::Sessions, type: :request
+	config.include RequestHelper::Sessions, type: :controller
+	config.include RequestHelper::Sessions, type: :request
 end

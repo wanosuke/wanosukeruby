@@ -13146,3 +13146,74 @@ Processing by StaticPagesController#help as HTML
 Completed 200 OK in 97ms (Views: 86.6ms | ActiveRecord: 1.2ms)
 
 
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTask Load (1.8ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" ORDER BY "tasks"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" ORDER BY "tasks"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+Started GET "/" for 127.0.0.1 at 2018-03-17 17:04:00 +0900
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (468.7ms)
+  [1m[36mUser Load (7.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (27.1ms)
+Completed 200 OK in 793ms (Views: 771.5ms | ActiveRecord: 13.5ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-03-17 17:04:08 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"t7Z/ETFrMh58h0mzQWOztOI+A0rnKGpvl6itOPPLrMpG/xEQdqiDtCpWzJESYz+ySeoGNmESZ9h9ih3/7EZQZQ==", "session"=>{"email"=>"test@test.jp", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"ログイン"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.jp"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 124ms (Views: 38.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/users/101" for 127.0.0.1 at 2018-03-17 17:04:16 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"101"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  [1m[35m (22.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 101]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY tasks.created_at DESC LIMIT $2 OFFSET $3[0m  [["user_id", 101], ["LIMIT", 25], ["OFFSET", 0]]
+  Rendered collection of tasks/_task.html.erb [5 times] (3.0ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 101]]
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered shared/_task_form.html.erb (4.2ms)
+  Rendered users/show.html.erb within layouts/application (52.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 65.5ms | ActiveRecord: 27.9ms)
+
+
+Started DELETE "/tasks/314" for 127.0.0.1 at 2018-03-17 17:04:25 +0900
+Processing by TasksController#destroy as HTML
+  Parameters: {"authenticity_token"=>"+YHaAkhxISpytrNbjNu13+bxuCa1t5iWqx3UJAsf4mMIyLQDD7KQgCRnNnnf2znZTSW9WjONlSFBP2TjFJIezA==", "id"=>"314"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 101], ["id", 314], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (7.7ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = $1[0m  [["id", 314]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/101
+Completed 302 Found in 24ms (ActiveRecord: 16.1ms)
+
+
+Started GET "/users/101" for 127.0.0.1 at 2018-03-17 17:04:25 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"101"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 101]]
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY tasks.created_at DESC LIMIT $2 OFFSET $3[0m  [["user_id", 101], ["LIMIT", 25], ["OFFSET", 0]]
+  Rendered collection of tasks/_task.html.erb [4 times] (3.3ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 101]]
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered shared/_task_form.html.erb (2.9ms)
+  Rendered users/show.html.erb within layouts/application (17.1ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 99ms (Views: 94.1ms | ActiveRecord: 1.7ms)
+
+

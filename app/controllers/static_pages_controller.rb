@@ -1,15 +1,12 @@
 class StaticPagesController < ApplicationController
 
-  def help
+	def help
+	end
 
-  end
+	def about
+	end
 
-  def about
-    # 'app/views/static_pages/about.html.erb'
-  end
-
-  def contact
-    # app/views/static_pages/contact.html.erb'
-  end
-
+	def contact
+	# app/views/static_pages/contact.html.erb'
+	end
 end

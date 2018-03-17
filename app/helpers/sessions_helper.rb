@@ -25,7 +25,6 @@ module SessionsHelper
 		user.remember
 		cookies.permanent[:remember_token] = user.remember_token
 		cookies.permanent.signed[:user_id] = user.id
-
 	end
 
 	def forget(user)
@@ -40,8 +39,7 @@ module SessionsHelper
 		@current_user = nil
 	end
 
-  	def current_user?(user)
-    	user == current_user
-  	end
-
+	def current_user?(user)
+		user == current_user
+	end
 end
